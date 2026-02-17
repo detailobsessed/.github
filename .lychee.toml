@@ -1,0 +1,13 @@
+# lychee link checker configuration
+# https://lychee.cli.rs/usage/config/
+
+# Skip these patterns
+exclude = [
+  "^https://github\\.com/detailobsessed/.*/issues/\\d+",  # GH issue links may not exist yet
+]
+
+# Don't require GitHub token for public repos
+no_progress = true
+cache = true
+max_retries = 3
+timeout = 30
