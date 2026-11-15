@@ -2,6 +2,11 @@ default_stages = ["pre-commit"]
 minimum_prek_version = "0.3.3"
 default_install_hook_types = ["commit-msg", "pre-commit", "pre-push"]
 
+# `prek update` takes the newest tag, pre-releases included. lychee force-moves
+# a rolling `nightly` tag onto master, so without this every update picks it.
+[update]
+exclude_tags = ["*-rc*", "*-alpha*", "*-beta*", "nightly"]
+
 [[repos]]
 repo = "builtin"
 hooks = [
@@ -32,7 +37,7 @@ hooks = [{ id = "typos", priority = 1 }]
 
 [[repos]]
 repo = "https://github.com/lycheeverse/lychee"
-rev = "lychee-v0.23.0"  # lychee tags nightly as latest; prek autoupdate may switch to it
+rev = "lychee-v0.23.0"
 hooks = [{ id = "lychee", args = ["--config", ".lychee.toml"], priority = 1, types_or = ["markdown", "html", "rst", "yaml"] }]
 
 [[repos]]
